@@ -1,0 +1,156 @@
+<!--<!DOCTYPE html>-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <!-- Importing bootstrap 3.0 and css -->
+
+    <title>Hommies On The Loose</title>
+
+    <link href="{{ asset('chat/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('chat/css/bootstrap-theme.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('chat/css/style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('chat/css/style3.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('chat/css/uploadify.css') }}">
+    <link href="{{ asset('chat/css/general_share.css') }}" rel="stylesheet"/>
+
+    <script src="{{ asset('chat/js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ asset('chat/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('chat/js/jquery.knob.js') }}"></script>
+    <script src="{{ asset('chat/js/jquery.ui.widget.js') }}"></script>
+    <script src="{{ asset('chat/js/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ asset('chat/js/jquery.fileupload.js') }}"></script>
+
+    <!-- Our main JS file -->
+    <script src="{{ asset('chat/js/script.js') }}"></script>
+
+
+</head>
+
+<body>
+<!-- Top bar.....bread crumps -->
+<div class="nav main-header" id="top-navigation">
+    <div id="top-navigation-logo">
+        <!-- Logo and Text on the Left Side of the Top bar -->
+        <span>
+<!-- <img id="img-logo" src="{{ asset('chat/img/logo.png') }}" alt="Logo"/> -->
+<a href="#" class="header_text"><p id="header-text" class="text-muted">send<span style="color:blue">CHat</span></p></a>
+</span>
+    </div>
+    <!-- Welcome and Username at the right side of the Top Bar -->
+    <div id="top-navigation-username">
+        <span id="my_profile_picture"></span>
+        <!-- Working with the dp -->
+        <div id="dp_form_holder">
+            <form method="post" action="" enctype="multipart/form-data">
+                <input type="file" name="file" id="file"/>
+                <input type="submit" name="submit_file" id="submit_file"/>
+            </form>
+        </div>
+
+        <span style="color:white; margin-top:3px"><em>Welcome,&nbsp;</em></span>
+
+    </div>
+</div>
+
+<!-- End Of Top Bar -->
+
+<div class="mycontainer">
+
+    <!-- Side bar begins -->
+
+    <div class="navigations">
+        <ul class="lists">
+            <li><a style="border-left:4px solid rgba(69, 162, 255, 0.93); border-radius:10px" href="Main_Dashboard.php"><img src="{{ asset('chat/img/dashboard.png') }}" class="navimg img-responsive"/><span class="nav-writting">Dashboard</span></a></li>
+            <li><a href="{{ path('publicmessages_index') }}"><img src="{{ asset('chat/img/chat-1.png') }}" class="navimg img-responsive" /><span class="nav-writting">Public Chat</span></a></li>
+            <li><a href="Private_Message/Private_Message.php"><img src="{{ asset('chat/img/send-file.png') }}" class="navimg img-responsive" /><span class="nav-writting">Private Chat</span></a></li>
+            <li><a href="General_Share/General_Share.php"><img src="{{ asset('chat/img/businessman.png') }}" class="navimg img-responsive" /><span class="nav-writting">Public Share</span></a></li>
+
+        </ul>
+    </div>
+
+    <!-- Side Bar Ends Here -->
+
+    <div class="main_content">
+        <div class="main_content_holder">
+            <div class = "panel panel-adjusted">
+                <div class = "panel-heading phead">
+                    <h2 class = "panel-title ptitle"> General Share</h2>
+                </div>
+                <div class = "panel-body pbody">
+                    <form id="upload" method="post" action="{{ asset('chat/php/share/upload.php') }}" enctype="multipart/form-data">
+                        <div id="drop">
+                            Drop Here
+
+                            <a>Browse</a>
+                            <input type="file" name="upl" multiple />
+                        </div>
+
+                        <ul>
+                            <!-- The file uploads will be shown here -->
+                        </ul>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="side_bar_holder">
+                <div class="designer">
+                    <div style="text-align:center;padding-top:15px"><span style="color:white;font-weight:bold">General Uploads</span></div>
+                </div>
+
+
+
+                <div class="uploaded_container">
+
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+<script>
+
+    $(document).ready(function(){
+
+        $("#my_profile_picture").load("Get_Profile_Picture.php");
+
+        $(" #my_profile_picture").click(function(){
+            $('#file').trigger("click");
+        });
+
+        $("#file").change(function(){
+            $("#submit_file").trigger("click");
+        });
+
+        $("#submit_file").click(function(){
+            $(this).submit();
+        });
+
+    });
+
+    setInterval(function(){
+        $(".uploaded_container").load("{{ asset('chat/php/share/uploaded.php') }}");
+    },2000);
+
+
+</script>
+
+<script type="text/javascript">
+    function Logout(){
+        $.get("../Logout/Logout.php");
+    }
+</script>
+
+</body>
+</html>

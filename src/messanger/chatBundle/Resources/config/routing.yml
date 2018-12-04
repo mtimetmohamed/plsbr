@@ -1,0 +1,22 @@
+chat_publicmessages:
+    resource: "@chatBundle/Resources/config/routing/publicmessages.yml"
+    prefix:   /publicmessages
+
+chat_homepage:
+    path:     /
+    defaults: { _controller: chatBundle:Default:index }
+chat_homechat:
+    path:     /chat
+    defaults: { _controller: chatBundle:PublicMessages:index }
+chat_homepublic:
+    path:     /public
+    defaults: { _controller: chatBundle:PublicMessages:new }
+chat_homeprivate:
+    path:     /new
+    defaults: { _controller: chatBundle:PublicMessages:new }
+chat_homeshare:
+    path:     /share
+    defaults: { _controller: chatBundle:PublicMessages:index }
+chat_homelog:
+    path:     /log
+    defaults: { _controller: chatBundle:PublicMessages:log }

@@ -1,0 +1,24 @@
+publicmessages_index:
+    path:     /
+    defaults: { _controller: "chatBundle:PublicMessages:index" }
+    methods:  GET
+
+publicmessages_show:
+    path:     /{msgId}/show
+    defaults: { _controller: "chatBundle:PublicMessages:show" }
+    methods:  GET
+
+publicmessages_new:
+    path:     /new
+    defaults: { _controller: "chatBundle:PublicMessages:new" }
+    methods:  [GET, POST]
+
+publicmessages_edit:
+    path:     /{msgId}/edit
+    defaults: { _controller: "chatBundle:PublicMessages:edit" }
+    methods:  [GET, POST]
+
+publicmessages_delete:
+    path:     /{msgId}/delete
+    defaults: { _controller: "chatBundle:PublicMessages:delete" }
+    methods:  DELETE

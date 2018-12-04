@@ -1,0 +1,39 @@
+STEP1:Identifier classe
+net id + partie host id a '0'
+192: 11000000 => classe C net id 3o et host id 1o et commence par 110
+classe A net id 1o et commence par 0, classe B net id 2o et commence par 10
+192.162.1.0 @ réseau
+192.162.1.1 @ ip
+
+STEP2:Caculer b
+subnetting (partge du réseau en sous réseaux)
+du subnetting classful =>mask sous réseau
+numero sR|@Rx|masque sR|@diffusion|nombre @ ip valides|plage d'a@
+une @Rx => diviser en N sR
+	comment identifier les sR tout en veillant a l'appartenance au meme Rx 
+(net id, host id) => (net id(n bits), subnet id(b bits),host id'(32-b-n))
+2 puissance (b >= min) N
+si net id= 3o et host id= 1o => b=6 =>64 sR
+
+STEP3:Identifier l'@ réseau de chaque sous réseau
+N = 3sR
+2bits codent ces 3 sR
+restent 6 bits pour les host id' (8-2)
+2 (puissance 6) -2 nombre d'@ hosts = 62@
+192.162.1.0 =>.0(bbhhhhhh)
+192.162.1.00hhhhhh sR0 192.162.1.0R 192.162.1.63D
+192.162.1.01hhhhhh sR1 192.162.1.64R 192.162.1.127D
+192.162.1.10hhhhhh sR2 192.162.1.128R 192.162.1.191D
+192.162.1.11hhhhhh sR3 192.162.1.192R 192.162.1.255D
+@réseau h=0
+@diffusion h=1
+mask 255.255.255.192
+initialement on a 254@ => apres subnetting on a 64x4=248@
+
+numero sR|@Rx          |masque sR      |@diffusion   |nombre @ ip valides|plage d'a@
+sR0      |192.162.1.0  |255.255.255.192|192.162.1.63 |62                 |[192.162.1.1->192.162.1.62]
+sR1      |192.162.1.64 |255.255.255.192|192.162.1.127|62                 |[192.162.1.65->192.162.1.126]
+sR2      |192.162.1.128|255.255.255.192|192.162.1.191|62                 |[192.162.1.129->192.162.1.190]
+
+VLSM Variable Length Subnet Mask
+Classless
